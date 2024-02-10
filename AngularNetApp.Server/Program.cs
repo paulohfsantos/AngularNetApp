@@ -1,3 +1,6 @@
+using AngularNetApp.Server.Domain.Database;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace AngularNetApp.Server
 {
@@ -12,6 +15,13 @@ namespace AngularNetApp.Server
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            builder.Services.AddDbContext<DatabaseContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+            builder.Services.AddAuthorization();
+            builder.Services.AddIdentityApiEndpoints<IdentityUser>()
+                .AddEntityFrameworkStores<DatabaseContext>();
+
             var app = builder.Build();
 
             app.UseDefaultFiles();
@@ -23,6 +33,8 @@ namespace AngularNetApp.Server
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
+            app.MapIdentityApi<IdentityUser>();
 
             app.UseHttpsRedirection();
             app.UseAuthorization();
