@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using AngularNetApp.Server.Domain.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace AngularNetApp.Server.Domain.Database
@@ -8,5 +9,7 @@ namespace AngularNetApp.Server.Domain.Database
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
         {
         }
+
+        public DbSet<Todo> Todos { get; set; }
     }
 }

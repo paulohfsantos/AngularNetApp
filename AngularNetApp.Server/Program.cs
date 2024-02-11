@@ -1,4 +1,6 @@
 using AngularNetApp.Server.Domain.Database;
+using AngularNetApp.Server.Domain.Repositories;
+using AngularNetApp.Server.Infra.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -34,6 +36,8 @@ namespace AngularNetApp.Server
             builder.Services.AddAuthorization();
             builder.Services.AddIdentityApiEndpoints<IdentityUser>()
                 .AddEntityFrameworkStores<DatabaseContext>();
+
+            builder.Services.AddScoped<ITodoRepository, TodoRepository>();
 
             var app = builder.Build();
 
