@@ -38,10 +38,5 @@ namespace AngularNetApp.Server.Infra.Repositories
         {
             return await _removeTodo.DeleteTodoById(id);
         }
-
-        public Task<UpdateTodoRequest> UpdateTodo(UpdateTodoRequest request)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
