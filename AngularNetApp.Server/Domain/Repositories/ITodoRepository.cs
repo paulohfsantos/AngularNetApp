@@ -5,7 +5,7 @@ namespace AngularNetApp.Server.Domain.Repositories
 {
     public interface ITodoRepository
     {
-        Task<AddTodoRequest> CreateTodo(AddTodoRequest request);
+        Task<Todo> CreateTodo(AddTodoRequest request);
         Task<IEnumerable<Todo>> GetAllTodos();
         Task<Todo> GetTodoById(int id);
         Task<UpdateTodoRequest> UpdateTodo(int id, UpdateTodoRequest request);

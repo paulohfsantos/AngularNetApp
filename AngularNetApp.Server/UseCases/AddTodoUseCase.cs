@@ -8,7 +8,7 @@ namespace AngularNetApp.Server.UseCases
     {
         private readonly DatabaseContext _databaseContext = databaseContext;
 
-        public async Task<AddTodoRequest> CreateTodo(AddTodoRequest request)
+        public async Task<Todo> CreateTodo(AddTodoRequest request)
         {
             var todo = new Todo
             {
@@ -25,7 +25,7 @@ namespace AngularNetApp.Server.UseCases
             await _databaseContext.Todos.AddAsync(todo);
             await _databaseContext.SaveChangesAsync();
 
-            return request;
+            return todo;
         }
     }
 }

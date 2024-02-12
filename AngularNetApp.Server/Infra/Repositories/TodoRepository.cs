@@ -14,7 +14,7 @@ namespace AngularNetApp.Server.Infra.Repositories
         private readonly RemoveTodoUseCase _removeTodo = new RemoveTodoUseCase(databaseContext);
         private readonly UpdateTodoUseCase _updateTodo = new UpdateTodoUseCase(databaseContext);
 
-        public async Task<AddTodoRequest> CreateTodo(AddTodoRequest request)
+        public async Task<Todo> CreateTodo(AddTodoRequest request)
         {
             return await _addTodo.CreateTodo(request);
         }
