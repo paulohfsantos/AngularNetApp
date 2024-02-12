@@ -1,14 +1,21 @@
 ﻿using AngularNetApp.Server.Infra.Controllers.DTOs;
-using AngularNetApp.Server.Infra.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using AngularNetApp.Server.Domain.Repositories;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AngularNetApp.Server.Infra.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class TodoController(TodoRepository todoRepository) : ControllerBase
+    public class TodoController : ControllerBase
     {
-        private readonly TodoRepository _todoRepository = todoRepository;
+        private readonly ITodoRepository _todoRepository;
+
+        public TodoController(ITodoRepository todoRepository)
+        {
+            _todoRepository = todoRepository;
+        }
 
         [HttpGet]
         public async Task<IActionResult> GetAllTodos()
