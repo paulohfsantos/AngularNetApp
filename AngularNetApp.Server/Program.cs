@@ -13,6 +13,17 @@ namespace AngularNetApp.Server
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            //var allowedOrigins = "_allowedOrigins";
+
+            //builder.Services.AddCors(options =>
+            //{
+            //    options.AddPolicy(name: allowedOrigins, builder =>
+            //    {
+            //        builder.WithOrigins("http://localhost:4200")
+            //            .AllowAnyHeader()
+            //            .AllowAnyMethod();
+            //    });
+            //});
 
             // Add services to the container.
             builder.Services.AddControllers();
@@ -53,7 +64,7 @@ namespace AngularNetApp.Server
 
             // in this case, I've choose to use the default IdentityUser
             // for default Identity endpoints instead of a custom one
-            app.MapIdentityApi<IdentityUser>();
+            app.MapGroup("/api").MapIdentityApi<IdentityUser>();
 
             app.UseHttpsRedirection();
             app.UseAuthorization();

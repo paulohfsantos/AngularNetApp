@@ -1,31 +1,24 @@
-<!-- <dx-form [formData]="formData" (onSubmit)="submitForm()">
-  <dxi-item
-    dataField="email"
-    editorType="dxTextBox"
-    editorOptions="{ mode: 'email' }"
-    label="Email"
-  ></dxi-item>
-  <dxi-item
-    dataField="password"
-    editorType="dxTextBox"
-    editorOptions="{ mode: 'password' }"
-    label="Password"
-  ></dxi-item>
-  <dx-button
-    text="Login"
-    [type]="'success'"
-    useSubmitBehavior="true"
-  ></dx-button>
-</dx-form> -->
 <div>
-  <dx-form id="form">
-    <dxi-item
-      dataField="email"
-      editorType="dxTextBox"
-      editorOptions="{ mode: 'email' }"
-      label="Email"
-    ></dxi-item>
-  </dx-form>
+  <form
+    [formGroup]="loginFormGroup"
+    (ngSubmit)="handleSubmit()"
+  >
+    <div>
+      <label for="email">Email</label>
+      <input
+        type="email"
+        id="email"
+        formControlName="email"
+      />
+    </div>
+    <div>
+      <label for="password">Password</label>
+      <input
+        type="password"
+        id="password"
+        formControlName="password"
+      />
+    </div>
+    <button type="submit">Login</button>
+  </form>
 </div>
-
-<!-- <p>login form</p> -->

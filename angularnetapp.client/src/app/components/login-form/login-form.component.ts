@@ -1,4 +1,9 @@
 import { Component } from '@angular/core';
+import {
+  FormControl,
+  FormGroup,
+  Validators
+} from '@angular/forms';
 import { ILoginRequest } from '../../DTOs/login-request';
 import { AuthService } from '../../services/auth/auth.service';
 
@@ -8,27 +13,27 @@ import { AuthService } from '../../services/auth/auth.service';
   styleUrl: './login-form.component.css'
 })
 export class LoginFormComponent {
-  formData: ILoginRequest = {
-    email: '',
-    password: ''
-  };
+  loginFormGroup = new FormGroup({
+    email: new FormControl(
+      '',
+      [Validators.required, Validators.email]
+    ),
+    password: new FormControl(
+      '',
+      [Validators.required]
+    )
+  });
+
   constructor(private authService: AuthService) { }
 
-  submitForm() {
-    const { email, password } = this.formData;
+  handleSubmit() {
+    if (this.loginFormGroup.invalid) {
+      return;
+    }
 
-    this.authService.login({ email, password })
-      .subscribe({
-        next: this.onNextFn.bind(this),
-        error: this.onErrorFn.bind(this)
-      });
-  }
+    console.log('caiu aqui disgrasssa');
+    const credentials = this.loginFormGroup.value;
 
-  onNextFn(data: Object) {
-    console.log(data);
-  }
-
-  onErrorFn(err: Error | string) {
-    console.log(err);
+    this.authService.login(credentials as ILoginRequest);
   }
 }
