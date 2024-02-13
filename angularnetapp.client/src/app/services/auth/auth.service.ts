@@ -1,4 +1,5 @@
 import { Injectable, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 
@@ -8,6 +9,7 @@ import { ILoginResponse } from '../../DTOs/login-response';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
+  private router = inject(Router);
   private isAuthenticated = false;
   private http = inject(HttpClient);
   private cookies = inject(CookieService);
@@ -23,13 +25,9 @@ export class AuthService {
         const accessToken = data.accessToken;
         this.cookies.set('accessToken', accessToken);
         this.isAuthenticated = true;
+
+        this.router.navigate(['/home']);
       });
-
-    // if (this.isAuthenticated) {
-    //   notify('You have successfully logged in', 'success', 1000);
-    // }
-
-    // return this.isAuthenticated;
   }
 
   register(credentials: IRegisterRequest) {
