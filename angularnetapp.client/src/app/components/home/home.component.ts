@@ -8,7 +8,7 @@ import { ITodo } from '../../model/todo';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  private todos: ITodo[] = [];
+  todos: ITodo[] = [];
   private todoService = inject(TodoService);
 
   constructor() { }
