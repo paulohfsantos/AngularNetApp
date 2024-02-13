@@ -21,13 +21,24 @@ export class AuthService {
   login(credentials: ILoginRequest) {
     this.http.post<ILoginResponse>('api/login', credentials)
       .subscribe((data) => {
-        console.log('dt', data);
         const accessToken = data.accessToken;
         this.cookies.set('accessToken', accessToken);
         this.isAuthenticated = true;
 
         this.router.navigate(['/home']);
       });
+  }
+
+  getAccessToken() {
+    return this.cookies.get('accessToken');
+  }
+
+  setToken(token: string) {
+    return {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }
   }
 
   register(credentials: IRegisterRequest) {

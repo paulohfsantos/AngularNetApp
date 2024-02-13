@@ -6,6 +6,8 @@ import { CookieService } from 'ngx-cookie-service';
 
 import { AppRoutingModule } from './app-routing.module';
 
+import { AuthenticationHandler } from './common/getToken';
+
 import { AppComponent } from './app.component';
 import { ContainerComponent } from './components/container/container.component';
 import { HomeComponent } from './components/home/home.component';
@@ -22,6 +24,7 @@ import { DxFormModule } from 'devextreme-angular/ui/form';
 import { DxiItemModule } from 'devextreme-angular/ui/nested';
 import { DxiValidationRuleModule } from 'devextreme-angular/ui/nested';
 import { DxToastModule } from 'devextreme-angular/ui/toast';
+import { AddTodoComponent } from './components/add-todo/add-todo.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,8 @@ import { DxToastModule } from 'devextreme-angular/ui/toast';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    ContainerComponent
+    ContainerComponent,
+    AddTodoComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +50,7 @@ import { DxToastModule } from 'devextreme-angular/ui/toast';
     DxiValidationRuleModule,
     DxToastModule
   ],
-  providers: [CookieService],
+  providers: [CookieService, AuthenticationHandler],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
