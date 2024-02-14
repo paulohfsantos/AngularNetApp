@@ -1,1 +1,16 @@
-<p>add-todo works!</p>
+<div class="add_todo">
+  <form
+    [formGroup]="todoFormGroup"
+    (ngSubmit)="handleAddTodo()"
+  >
+    <div>
+      <label>Title</label>
+      <input type="text" formControlName="title" />
+    </div>
+    <div>
+      <label>Description</label>
+      <input type="password" formControlName="description" />
+    </div>
+    <button type="submit">Add Todo</button>
+  </form>
+</div>

@@ -1,3 +1,13 @@
-﻿<app-container>
-  <router-outlet></router-outlet>
-</app-container>
+﻿<main>
+  <header class="home_page__header">
+    <div class="title">
+      <h6>Todo App</h6>
+    </div>
+    <div class="menu">
+      <a routerLink="/about" routerLinkActive="active">Logout</a>
+    </div>
+  </header>
+  <app-container>
+    <router-outlet></router-outlet>
+  </app-container>
+</main>

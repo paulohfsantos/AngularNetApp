@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 })
 export class LoginFormComponent implements OnInit {
   router = inject(Router);
+  authService = inject(AuthService);
 
   loginFormGroup = new FormGroup({
     email: new FormControl(
@@ -27,7 +28,7 @@ export class LoginFormComponent implements OnInit {
     )
   });
 
-  constructor(private authService: AuthService) { }
+  constructor() { }
 
   handleSubmit() {
     if (this.loginFormGroup.invalid) {

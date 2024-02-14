@@ -1,1 +1,11 @@
-<p>todo-list works!</p>
+<dx-list
+  #list
+  [dataSource]="todos"
+  displayExpr="title"
+  [showSelectionControls]="true"
+  selectionMode="multiple"
+  [allowItemDeleting]="true"
+  (onSelectionChanged)="onTodoChecked($event, $event)"
+>
+  <dxo-item-dragging [allowReordering]="true"></dxo-item-dragging>
+</dx-list>
