@@ -7,6 +7,58 @@
   </div>
 
   <div class="home_page__todos">
-    <app-todo-list></app-todo-list>
+    <div class="todos__header">
+      <div>
+        <dx-button
+          text="Add Todo"
+          (onClick)="toggleAddTodo()"
+        ></dx-button>
+      </div>
+      <div>
+        <dx-button
+          text="Update Todo"
+        ></dx-button>
+      </div>
+    </div>
+
+    <dx-list
+      #list
+      [dataSource]="todos"
+      displayExpr="title"
+      [showSelectionControls]="true"
+      selectionMode="single"
+      [allowItemDeleting]="true"
+      (onSelectionChanged)="onTodoChecked($event, $event)"
+    >
+      <dxo-item-dragging [allowReordering]="true"></dxo-item-dragging>
+    </dx-list>
   </div>
+
+  <!-- add Todo Dialog -->
+  <dx-popup
+    [(visible)]="addTodoPopupVisible"
+    [height]="200"
+    [resizeEnabled]="false"
+    position="center"
+    title="Add Todo"
+  >
+    <div class="add_todo">
+      <form
+        [formGroup]="todoFormGroup"
+        (ngSubmit)="handleAddTodo()"
+      >
+        <div>
+          <label>Title</label>
+          <input type="text" formControlName="title" />
+        </div>
+        <div>
+          <label>Description</label>
+          <input type="text" formControlName="description" />
+        </div>
+        <button type="submit">Add Todo</button>
+      </form>
+    </div>
+  </dx-popup>
+
+  <!-- update Todo Dialog -->
 </section>

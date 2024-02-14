@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { TodoService } from '../../services/todo/todo.service';
 import { ITodo } from '../../model/todo';
+import { Observable } from 'rxjs';
 
 interface TodoCheckedEvent {
   addedItems: ITodo[];
@@ -17,15 +18,9 @@ interface TodoCheckedEvent {
 export class TodoListComponent implements OnInit {
   todoService = inject(TodoService);
   todos: ITodo[] = [];
+  todos$: Observable<ITodo[]> = new Observable<ITodo[]>();
 
   constructor() {}
-
-  handleGetTodos() {
-    this.todoService.getTodos()
-      .subscribe((todos: ITodo[]) => {
-        this.todos = todos;
-      });
-  }
 
   onTodoChecked(event1: TodoCheckedEvent, event2: TodoCheckedEvent) {
     console.log(event1, event2);
@@ -36,6 +31,6 @@ export class TodoListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.handleGetTodos();
+    this.todos$ = this.todoService.getTodos();
   }
 }

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -13,13 +13,10 @@ import { ITodoRequest } from '../../DTOs/todo-request';
   styleUrl: './add-todo.component.css'
 })
 export class AddTodoComponent {
-  todoService = inject(TodoService);
+  @Input() addTodoPopupVisible: boolean = false;
+  @Output() todoAdded = new EventEmitter<boolean>();
 
-  todoForm = {
-    title: '',
-    description: '',
-    isComplete: false
-  };
+  todoService = inject(TodoService);
 
   todoFormGroup = new FormGroup({
     title: new FormControl(
@@ -38,6 +35,15 @@ export class AddTodoComponent {
   constructor() { }
 
   handleAddTodo() {
-    this.todoService.addTodo(this.todoFormGroup.value as ITodoRequest);
+    if (this.todoFormGroup.invalid) {
+      return;
+    }
+
+    this.todoService
+      .addTodo(this.todoFormGroup.value as ITodoRequest)
+      .subscribe(() => {
+        this.todoFormGroup.reset();
+        this.todoAdded.emit(true);
+      });
   }
 }

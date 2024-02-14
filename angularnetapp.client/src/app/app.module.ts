@@ -26,6 +26,8 @@ import { DxiValidationRuleModule } from 'devextreme-angular/ui/nested';
 import { DxToastModule } from 'devextreme-angular/ui/toast';
 import { DxListModule } from 'devextreme-angular/ui/list';
 import { DxCheckBoxModule } from 'devextreme-angular/ui/check-box';
+import { DxPopupModule } from 'devextreme-angular/ui/popup';
+import { UpdateTodoComponent } from './components/update-todo/update-todo.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { DxCheckBoxModule } from 'devextreme-angular/ui/check-box';
     RegisterComponent,
     HomeComponent,
     ContainerComponent,
-    AddTodoComponent
+    AddTodoComponent,
+    UpdateTodoComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +53,8 @@ import { DxCheckBoxModule } from 'devextreme-angular/ui/check-box';
     DxiValidationRuleModule,
     DxToastModule,
     DxListModule,
-    DxCheckBoxModule
+    DxCheckBoxModule,
+    DxPopupModule
   ],
   providers: [CookieService, AuthenticationHandler],
   bootstrap: [AppComponent]

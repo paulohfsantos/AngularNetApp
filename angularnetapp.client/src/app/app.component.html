@@ -4,7 +4,11 @@
       <h6>Todo App</h6>
     </div>
     <div class="menu">
-      <a routerLink="/about" routerLinkActive="active">Logout</a>
+      <dx-button
+        text="Logout"
+        type="normal"
+        (click)="logout()"
+      ></dx-button>
     </div>
   </header>
   <app-container>

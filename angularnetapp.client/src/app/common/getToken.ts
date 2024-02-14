@@ -16,4 +16,12 @@ export class AuthenticationHandler {
       }
     };
   }
+
+  isAuthenticated() {
+    return this.cookies.check('accessToken');
+  }
+
+  logout() {
+    this.cookies.delete('accessToken');
+  }
 }

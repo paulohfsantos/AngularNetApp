@@ -1,9 +1,9 @@
 <dx-list
   #list
-  [dataSource]="todos"
+  [dataSource]="todos$ | async"
   displayExpr="title"
   [showSelectionControls]="true"
-  selectionMode="multiple"
+  selectionMode="single"
   [allowItemDeleting]="true"
   (onSelectionChanged)="onTodoChecked($event, $event)"
 >

@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { ITodo } from './model/todo';
+import { Component, OnInit, inject } from '@angular/core';
+import { AuthService } from './services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,10 +9,18 @@ import { ITodo } from './model/todo';
 })
 
 export class AppComponent implements OnInit {
-  constructor(private http: HttpClient) {}
+  private authService = inject(AuthService);
+  private router = inject(Router);
+  constructor() {}
 
   ngOnInit() {
-    // this.getForecasts();
+    if (!this.authService.isAuthenticatedUser()) {
+      this.router.navigate(['/login']);
+    }
+  }
+
+  logout() {
+    console.log('Logout');
   }
 
   helloWorld() {
