@@ -69,7 +69,7 @@ export class HomeComponent implements OnInit {
       });
   }
 
-  // select a todo from the list and returning it
+  // select a todo from the list
   onTodoChecked(e: ITodo) {
     this.todoService.getTodoById(e?.id)
       .subscribe((todo) => {
