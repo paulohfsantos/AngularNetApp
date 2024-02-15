@@ -8,15 +8,19 @@
 
   <div class="home_page__todos">
     <div class="todos__header">
-      <div>
+      <div class="dx_button">
         <dx-button
           text="Add Todo"
+          type="default"
           (onClick)="toggleAddTodo()"
         ></dx-button>
       </div>
-      <div>
+      <div class="dx_button">
         <dx-button
+          stylingMode="outlined"
           text="Update Todo"
+          type="default"
+          (onClick)="toggleUpdateTodo()"
         ></dx-button>
       </div>
     </div>
@@ -28,7 +32,9 @@
       [showSelectionControls]="true"
       selectionMode="single"
       [allowItemDeleting]="true"
-      (onSelectionChanged)="onTodoChecked($event, $event)"
+      (onItemDeleting)="onTodoHandleDelete($event.itemData)"
+      (onSelectionChanged)="onTodoChecked($event.addedItems[0])"
+      [collapsibleGroups]="true"
     >
       <dxo-item-dragging [allowReordering]="true"></dxo-item-dragging>
     </dx-list>
@@ -37,28 +43,58 @@
   <!-- add Todo Dialog -->
   <dx-popup
     [(visible)]="addTodoPopupVisible"
-    [height]="200"
+    [height]="500"
     [resizeEnabled]="false"
     position="center"
     title="Add Todo"
   >
     <div class="add_todo">
-      <form
-        [formGroup]="todoFormGroup"
-        (ngSubmit)="handleAddTodo()"
-      >
-        <div>
-          <label>Title</label>
+      <form [formGroup]="todoFormGroup" (ngSubmit)="handleAddTodo()">
+        <div class="form_group">
+          <label>Title <span>*</span></label>
           <input type="text" formControlName="title" />
         </div>
-        <div>
-          <label>Description</label>
+        <div class="form_group">
+          <label>Description <span>*</span></label>
           <input type="text" formControlName="description" />
         </div>
-        <button type="submit">Add Todo</button>
+        <div class="form_group">
+          <label>Completed</label>
+          <input type="checkbox" formControlName="isComplete" />
+        </div>
+        <button type="submit">
+          Add Todo
+        </button>
       </form>
     </div>
   </dx-popup>
 
   <!-- update Todo Dialog -->
+  <dx-popup
+    [(visible)]="updateTodoPopupVisible"
+    [height]="500"
+    [resizeEnabled]="false"
+    position="center"
+    title="Update Todo"
+  >
+    <div class="update_todo">
+      <form [formGroup]="updateTodoFormGroup" (ngSubmit)="handleUpdateTodo()">
+        <div class="form_group">
+          <label>Title <span>*</span></label>
+          <input type="text" formControlName="title" />
+        </div>
+        <div class="form_group">
+          <label>Description <span>*</span></label>
+          <input type="text" formControlName="description" />
+        </div>
+        <div class="form_group">
+          <label>Completed</label>
+          <input type="checkbox" formControlName="isComplete" />
+        </div>
+        <button type="submit">
+          Update Todo
+        </button>
+      </form>
+    </div>
+  </dx-popup>
 </section>

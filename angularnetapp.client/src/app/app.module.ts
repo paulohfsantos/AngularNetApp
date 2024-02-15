@@ -27,7 +27,7 @@ import { DxToastModule } from 'devextreme-angular/ui/toast';
 import { DxListModule } from 'devextreme-angular/ui/list';
 import { DxCheckBoxModule } from 'devextreme-angular/ui/check-box';
 import { DxPopupModule } from 'devextreme-angular/ui/popup';
-import { UpdateTodoComponent } from './components/update-todo/update-todo.component';
+import { DxoItemDraggingModule } from 'devextreme-angular/ui/nested';
 
 @NgModule({
   declarations: [
@@ -40,7 +40,6 @@ import { UpdateTodoComponent } from './components/update-todo/update-todo.compon
     HomeComponent,
     ContainerComponent,
     AddTodoComponent,
-    UpdateTodoComponent
   ],
   imports: [
     BrowserModule,
@@ -54,9 +53,13 @@ import { UpdateTodoComponent } from './components/update-todo/update-todo.compon
     DxToastModule,
     DxListModule,
     DxCheckBoxModule,
-    DxPopupModule
+    DxPopupModule,
+    DxoItemDraggingModule
   ],
-  providers: [CookieService, AuthenticationHandler],
+  providers: [
+    CookieService,
+    AuthenticationHandler,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

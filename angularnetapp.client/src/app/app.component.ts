@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { AuthService } from './services/auth/auth.service';
 import { Router } from '@angular/router';
+import notify from 'devextreme/ui/notify';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,10 @@ export class AppComponent implements OnInit {
   private router = inject(Router);
   constructor() {}
 
+  isLoggedIn() {
+    return this.authService.isAuthenticatedUser();
+  }
+
   ngOnInit() {
     if (!this.authService.isAuthenticatedUser()) {
       this.router.navigate(['/login']);
@@ -20,11 +25,12 @@ export class AppComponent implements OnInit {
   }
 
   logout() {
-    console.log('Logout');
-  }
-
-  helloWorld() {
-    console.log('Hello World!');
+    this.authService.logout();
+    notify(
+      'You have been logged out.',
+      'success',
+      2000
+    );
   }
 
   title = 'angularnetapp.client';

@@ -19,7 +19,6 @@ export class AuthService {
   public isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
 
   constructor() {
-    // this.isAuthenticated = this.cookies.check('accessToken');
     this.isAuthenticatedSubject.next(this.isAuthenticatedUser());
   }
 
@@ -30,6 +29,8 @@ export class AuthService {
         const expirationTime = Date.now() + data.expiresIn * 1000;
         this.cookies.set('accessToken', accessToken);
         this.cookies.set('refreshToken', data.refreshToken);
+        // this is not recommended but this is required for the isAuthenticatedUser()
+        // to work properly. To be refactored in the future.
         this.cookies.set('tokenExpiration', expirationTime.toString());
         this.isAuthenticatedSubject.next(true);
 
@@ -49,9 +50,15 @@ export class AuthService {
     });
   }
 
-  isAuthenticatedUser() {
-    // return this.isAuthenticated;
+  logout() {
+    this.cookies.delete('accessToken');
+    this.cookies.delete('refreshToken');
+    this.cookies.delete('tokenExpiration');
+    this.isAuthenticatedSubject.next(false);
+    this.router.navigate(['/login']);
+  }
 
+  isAuthenticatedUser() {
     const accessToken = this.cookies.get('accessToken');
     const expirationTime = this.cookies.get('tokenExpiration');
     if (accessToken && expirationTime) {
@@ -59,27 +66,5 @@ export class AuthService {
       return now < parseInt(expirationTime, 10);
     }
     return false;
-  }
-
-  expirationCheck(expiresIn: number) {
-    console.log('Checking token expiration');
-    const expirationTime = this.cookies.get('tokenExpiration');
-    if (expirationTime) {
-      const now = Date.now();
-      if (now > parseInt(expirationTime, 10)) {
-        this.tokenExpired();
-        console.log('Token has expired');
-      } else {
-        console.log('Token is still valid');
-      }
-    }
-  }
-
-  tokenExpired() {
-    this.cookies.delete('accessToken');
-    this.cookies.delete('refreshToken');
-    this.cookies.delete('tokenExpiration');
-    this.isAuthenticatedSubject.next(false);
-    this.router.navigate(['/login']);
   }
 }

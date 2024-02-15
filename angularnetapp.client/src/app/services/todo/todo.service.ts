@@ -47,7 +47,7 @@ export class TodoService {
     );
   }
 
-  deleteTodo(id: string) {
+  deleteTodo(id: number) {
     return this.http.delete(
       `api/Todo/${id}`,
       this.authHandler.setToken(this.token)

@@ -3,7 +3,7 @@
     <div class="title">
       <h6>Todo App</h6>
     </div>
-    <div class="menu">
+    <div class="menu" *ngIf="isLoggedIn()">
       <dx-button
         text="Logout"
         type="normal"
