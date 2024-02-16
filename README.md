@@ -16,7 +16,7 @@
 
 ## Installation
 - Clone the repository
-- Open the project in Visual Studio 2022
+- Open the SOLUTION in Visual Studio 2022
 - Open the terminal and navigate to the project folder
 
 ```bash
