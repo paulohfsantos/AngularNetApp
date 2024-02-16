@@ -42,7 +42,7 @@ export class AuthService {
   }
 
   register(credentials: IRegisterRequest) {
-    return this.http.post('/register', credentials);
+    return this.http.post('api/register', credentials);
   }
 
   refreshToken(refreshToken: string) {
