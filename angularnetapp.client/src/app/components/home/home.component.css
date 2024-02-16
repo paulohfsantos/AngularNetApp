@@ -47,7 +47,7 @@ input[type="checkbox"] {
 }
 
 
-.add_todo button {
+.add_todo button, .update_todo button {
   width: 100px;
   height: 40px;
   background-color: #4CAF50;
@@ -57,7 +57,7 @@ input[type="checkbox"] {
   cursor: pointer;
 }
 
-.add_todo button:hover {
+.add_todo button:hover, .update_todo button:hover {
   background-color: #45a049;
 }
 
