@@ -37,6 +37,10 @@ dotnet restore
 
 ⚠ IMPORTANT: before running the app, make sure to update the connection string in the appsettings.json file to your local SQL Server instance.
 
+```bash
+Data Source=[server name];Initial Catalog=[db name];User ID=[login];Password=[password];Connect Timeout=30;Encrypt=False;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False
+```
+
 - create a new database in your local SQL Server instance
 - run the following command in the terminal to apply the migrations and create the tables in the database
 
