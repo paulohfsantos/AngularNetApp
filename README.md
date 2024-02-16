@@ -58,6 +58,8 @@ please, follow the steps on link below to use the app:
 
 
 ## To Do in future versions:
+- Solve dependency problems leading to security issues
+  
 - Apply unit tests on front-end and back-end
 
 - Add Custom Identity User in .NET Core
