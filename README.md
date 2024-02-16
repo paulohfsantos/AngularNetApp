@@ -49,3 +49,20 @@ dotnet ef database update
 
 please, follow the steps on link below to use the app:
 [Link](https://imgur.com/a/heNk2ty)
+
+
+## To Do in future versions:
+- Apply unit tests on front-end and back-end
+
+- Add Custom Identity User in .NET Core
+
+- Apply SOLID principles into the front-end and back-end
+
+- Refactor the front-end Angular with a better folder
+structure and code organization
+
+- Add a new feature to filter tasks
+
+- A new Design for the app (color scheme, layout, etc.)
+
+- Deploy the app to Azure
