@@ -23,13 +23,13 @@
 cd TodoAppNetAngular
 ```
 
-- build the project
+- build the project:
+Ctrl + F5
 
-```bash
-dotnet build
-```
+This will install dependencies on the client-side as well
 
 - install required dependencies
+(in case that Visual Studio haven't installed them)
 
 ```bash
 dotnet restore
