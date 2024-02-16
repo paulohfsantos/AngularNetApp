@@ -2,7 +2,7 @@
 using AngularNetApp.Server.Domain.Entities;
 using AngularNetApp.Server.Infra.Controllers.DTOs;
 
-namespace AngularNetApp.Server.UseCases
+namespace AngularNetApp.Server.UseCases.TodoUseCase
 {
     public class AddTodoUseCase(DatabaseContext databaseContext)
     {

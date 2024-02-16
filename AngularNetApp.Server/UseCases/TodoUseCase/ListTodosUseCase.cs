@@ -2,7 +2,7 @@
 using AngularNetApp.Server.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace AngularNetApp.Server.UseCases
+namespace AngularNetApp.Server.UseCases.TodoUseCase
 {
     public class ListTodosUseCase(DatabaseContext databaseContext)
     {

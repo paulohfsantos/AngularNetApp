@@ -1,7 +1,7 @@
 ﻿using AngularNetApp.Server.Domain.Database;
 using AngularNetApp.Server.Domain.Entities;
 
-namespace AngularNetApp.Server.UseCases
+namespace AngularNetApp.Server.UseCases.TodoUseCase
 {
     public class RemoveTodoUseCase(DatabaseContext databaseContext)
     {
@@ -11,7 +11,7 @@ namespace AngularNetApp.Server.UseCases
         {
             var existingTodo = await _databaseContext.Todos.FindAsync(id)
                 ?? throw new Exception("Todo not found");
-            
+
             _databaseContext.Todos.Remove(existingTodo);
             await _databaseContext.SaveChangesAsync();
 

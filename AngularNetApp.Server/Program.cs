@@ -1,10 +1,14 @@
 using AngularNetApp.Server.Domain.Database;
 using AngularNetApp.Server.Domain.Repositories;
+using AngularNetApp.Server.Domain.Entities;
 using AngularNetApp.Server.Infra.Repositories;
+// using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.Filters;
+using System.Text;
 
 namespace AngularNetApp.Server
 {
@@ -48,7 +52,34 @@ namespace AngularNetApp.Server
             builder.Services.AddIdentityApiEndpoints<IdentityUser>()
                 .AddEntityFrameworkStores<DatabaseContext>();
 
+            // TODO: Add custom IdentityUser and IdentityRole
+
+            //builder.Services.AddIdentity<User, IdentityRole>()
+            //    .AddEntityFrameworkStores<DatabaseContext>()
+            //    .AddDefaultTokenProviders();
+
             builder.Services.AddScoped<ITodoRepository, TodoRepository>();
+
+            builder.Services.ConfigureApplicationCookie(options =>
+            {
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(190);
+                options.SlidingExpiration = false;
+            });
+
+            //  data does not appear to be specific to the user who is currently logged in
+            //builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            //    .AddJwtBearer(options =>
+            //    {
+            //        options.TokenValidationParameters = new TokenValidationParameters
+            //        {
+            //            ValidateIssuer = false,
+            //            ValidateAudience = false,
+            //            ValidateLifetime = true,
+            //            ValidateIssuerSigningKey = true,
+            //            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+            //        };
+            //    });
 
             var app = builder.Build();
 

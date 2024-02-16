@@ -1,7 +1,7 @@
 ﻿using AngularNetApp.Server.Domain.Database;
 using AngularNetApp.Server.Infra.Controllers.DTOs;
 
-namespace AngularNetApp.Server.UseCases
+namespace AngularNetApp.Server.UseCases.TodoUseCase
 {
     public class UpdateTodoUseCase(DatabaseContext databaseContext)
     {

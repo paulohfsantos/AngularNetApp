@@ -2,7 +2,7 @@
 using AngularNetApp.Server.Domain.Entities;
 using AngularNetApp.Server.Domain.Repositories;
 using AngularNetApp.Server.Infra.Controllers.DTOs;
-using AngularNetApp.Server.UseCases;
+using AngularNetApp.Server.UseCases.TodoUseCase;
 
 namespace AngularNetApp.Server.Infra.Repositories
 {
