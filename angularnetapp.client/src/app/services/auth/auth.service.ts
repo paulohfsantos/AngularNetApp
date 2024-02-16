@@ -23,6 +23,7 @@ export class AuthService {
   }
 
   login(credentials: ILoginRequest) {
+    // refactor this login method
     this.http.post<ILoginResponse>('api/login', credentials)
       .subscribe((data) => {
         const accessToken = data.accessToken;
@@ -41,7 +42,7 @@ export class AuthService {
   }
 
   register(credentials: IRegisterRequest) {
-    this.http.post('/register', credentials);
+    return this.http.post('/register', credentials);
   }
 
   refreshToken(refreshToken: string) {
