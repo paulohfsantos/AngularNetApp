@@ -37,6 +37,13 @@
       [collapsibleGroups]="true"
     >
       <dxo-item-dragging [allowReordering]="true"></dxo-item-dragging>
+
+      <!-- Define a template for list items -->
+      <div *dxTemplate="let data of 'item'">
+        <div [ngStyle]="getItemStyle(data)">
+          {{ data.title }}
+        </div>
+      </div>
     </dx-list>
   </div>
 
@@ -78,18 +85,18 @@
     title="Update Todo"
   >
     <div class="update_todo">
-      <form [formGroup]="updateTodoFormGroup" (ngSubmit)="handleUpdateTodo()">
+      <form [formGroup]="updateTodoFormGroup" (ngSubmit)="handleTodoUpdate()">
         <div class="form_group">
-          <label>Title <span>*</span></label>
+          <label>Title</label>
           <input type="text" formControlName="title" />
         </div>
         <div class="form_group">
-          <label>Description <span>*</span></label>
+          <label>Description</label>
           <input type="text" formControlName="description" />
         </div>
         <div class="form_group">
           <label>Completed</label>
-          <input type="checkbox" formControlName="isComplete" />
+          <input type="checkbox" formControlName="isCompleted" />
         </div>
         <button type="submit">
           Update Todo

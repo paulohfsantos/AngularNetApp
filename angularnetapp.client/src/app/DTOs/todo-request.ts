@@ -1,5 +1,5 @@
 export interface ITodoRequest {
   title: string;
-  isComplete: boolean;
+  isCompleted: boolean;
   description: string;
 }

@@ -1,6 +1,6 @@
 export interface ITodo {
   id: number;
   title: string;
-  isComplete: boolean;
+  isCompleted: boolean;
   description: string;
 }
